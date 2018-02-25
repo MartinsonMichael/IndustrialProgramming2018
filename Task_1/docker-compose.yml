@@ -1,0 +1,31 @@
+version: '2.0'
+services:
+
+  recieve:
+    build: ./consumer
+    depends_on:
+     - send
+    networks:
+     - net_123
+    depends_on:
+     - queue
+     - db
+
+
+  queue:
+    image: rabbitmq
+    networks:
+     - net_123
+    depends_on:
+     - db
+
+
+  db:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: example
+
+
+networks:
+ net_123:
+    
