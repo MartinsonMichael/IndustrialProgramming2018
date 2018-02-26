@@ -3,8 +3,6 @@ services:
 
   recieve:
     build: ./consumer
-    depends_on:
-     - send
     networks:
      - net_123
     depends_on:
@@ -22,8 +20,11 @@ services:
 
   db:
     image: postgres
+    restart: always
     environment:
-      POSTGRES_PASSWORD: example
+      POSTGRES_PASSWORD: q12q
+    networks:
+     - net_123
 
 
 networks:
